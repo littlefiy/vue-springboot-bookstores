@@ -1,0 +1,70 @@
+.form-btn >>>.el-button{
+  width: 120px;
+  margin-left: 20px;
+  background-color: #E0B41B;
+  border: 0;
+}
+.demo-ruleForm >>> .el-input{
+  width: 320px;
+}
+.reg-form{
+  border: 2px solid #666752;
+  background-color: #EAEFF0;
+  border-radius: 10px;
+  padding-top: 20px;
+  width: 520px;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+.search{
+  width: 1226px;
+  margin: 0 auto;
+}
+.history{
+  position: relative;
+  margin-left: 210px;
+  padding-top: 0px;
+}
+.banner{
+  width: 100%;
+  background-color: #E9EBE7;
+  border: 1px solid #E9EBE7;
+}
+.search-input{
+  margin-left:450px;
+  margin-top: 2px;
+}
+.his-li{
+  float: left;
+  color: #333333;
+  font-size: 12pt;
+  margin-left: 8px;
+  opacity: 0.8;
+}
+.avatar-uploader .el-upload {
+  border: 1px solid white;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.avatar-uploader .el-upload:hover {
+  border-color: #409EFF;
+}
+.avatar-uploader-icon {
+  border: 2px dashed white;
+  border-radius: 10px;
+  font-size: 28px;
+  color: #8c939d;
+  width: 90px;
+  height: 90px;
+  line-height: 90px;
+  text-align: center;
+}
+.avatar {
+  width: 90px;
+  height: 90px;
+  display: block;
+  border-radius: 10px;
+
+}

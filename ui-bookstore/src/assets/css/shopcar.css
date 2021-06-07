@@ -1,0 +1,149 @@
+.buy-btn{
+  margin-left: 920px;;
+}
+.search{
+  width: 1226px;
+  margin: 0 auto;
+}
+.history{
+  position: relative;
+  margin-left: 210px;
+  padding-top: 0px;
+}
+.banner{
+  width: 100%;
+  background-color: #E9EBE7;
+  border: 1px solid #E9EBE7;
+}
+.search-input{
+  margin-left:450px;
+  margin-top: 2px;
+}
+el-input{
+  border:2px solid #E0B41B;
+  border-radius: 100%;
+}
+.his-li{
+  float: left;
+  color: #333333;
+  font-size: 12pt;
+  margin-left: 8px;
+  opacity: 0.8;
+}
+.cart {
+  margin: 32px;
+  background: #fff;
+  border: 1px solid #dddee1;
+  border-radius: 10px;
+}
+
+.cart-header-title {
+  padding: 16px 32px;
+  border-bottom: 1px solid #dddee1;
+  border-radius: 10px 10px 0 0;
+  background: #f8f8f9;
+}
+
+.cart-header-main {
+  padding: 10px 32px;
+  overflow: hidden;
+  border-bottom: 1px solid #dddee1;
+  background: #eee;
+  overflow: hidden;
+}
+
+.cart-empty {
+  text-align: center;
+  padding: 32px;
+}
+
+.cart-header-main div {
+  text-align: center;
+  float: left;
+  font-size: 14px;
+}
+
+div.cart-info {
+  width:50%;
+  text-align: left;
+}
+
+.cart-price,.cart-check{
+  width: 10%;
+}
+
+.cart-count {
+  width: 10%;
+}
+
+.cart-cost {
+  width: 10%;
+}
+
+.cart-delete {
+  width: 10%;
+}
+
+.cart-content-main {
+  padding: 0 32px;
+  height: 60px;
+
+  line-height: 60px;
+  text-align: center;
+  border-bottom: 1px dashed #e9eaec;
+  overflow: hidden;
+}
+
+.cart-content-main div {
+  float: left;
+}
+
+.cart-content-main img {
+  width: 60px;
+  height: 60px;
+  position: relative;
+  top: 10px;
+}
+
+.cart-control-minus,
+.cart-control-add {
+  display: inline-block;
+  margin: 0 4px;
+  width: 24px;
+  height: 24px;
+  line-height: 22px;
+  text-align: center;
+  background: #f8f8f9;
+  border-radius: 50%;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+  cursor: pointer;
+}
+
+.cart-control-delete {
+  cursor: pointer;
+  color: #2d8cf0;
+}
+
+.cart-control-order {
+  display: inline-block;
+  padding: 8px 32px;
+  border-radius: 6px;
+  background: #2d8cf0;
+  color: #fff;
+  cursor: pointer;
+}
+
+.cart-footer {
+  padding: 32px;
+  text-align: right;
+}
+
+.cart-footer-desc {
+  display: inline-block;
+  padding: 0 16px;
+}
+
+.cart-footer-desc span {
+  color: #f2352e;
+  font-size: 20px;
+}

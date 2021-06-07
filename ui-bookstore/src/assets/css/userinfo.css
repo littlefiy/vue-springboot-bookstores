@@ -1,0 +1,25 @@
+.search{
+  width: 1224px;
+  margin: 0 auto;
+}
+.history{
+  position: relative;
+  margin-left: 210px;
+  padding-top: 0px;
+}
+.his-li{
+  float: left;
+  color: #333333;
+  font-size: 12pt;
+  margin-left: 8px;
+  opacity: 0.8;
+}
+.banner{
+  width: 100%;
+  background-color: #E9EBE7;
+  border: 1px solid #E9EBE7;
+}
+.search-input{
+  margin-left:450px;
+  margin-top: 2px;
+}
