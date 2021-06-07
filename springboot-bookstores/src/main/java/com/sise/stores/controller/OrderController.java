@@ -1,0 +1,42 @@
+package com.sise.stores.controller;
+
+
+
+import com.sise.stores.domain.*;
+import com.sise.stores.domain.vo.OrderVO;
+import com.sise.stores.service.impl.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
+
+@Controller
+@RequestMapping("/order")
+public class OrderController {
+    @Autowired
+    private OrderServiceImpl orderService;
+
+    @Autowired
+    private ShopcarServiceImpl shopcarService;
+    @RequestMapping("/toOrder")
+    @ResponseBody
+    public List<Shopcar> createOrder(@RequestBody List<Integer> carIds){
+        List<Shopcar> shopcarList=shopcarService.findCarByIds(carIds);
+        return shopcarList;
+    }
+
+    @RequestMapping("/createOrder")
+    @ResponseBody
+    public String createOrder(@RequestBody OrderVO ov){
+        String code=orderService.addOrder(ov.getCarIds(),ov.getUserId(),ov.getAmount());
+        return code;
+    }
+    @RequestMapping("/findOrderList")
+    @ResponseBody
+    public List<Order> findOrderList(@RequestBody int userId){
+        return orderService.findOrderByUserId(userId);
+    }
+}
