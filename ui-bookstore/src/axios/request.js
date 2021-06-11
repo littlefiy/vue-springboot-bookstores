@@ -7,7 +7,8 @@ import { getToken } from '@/utils/auth'*/
 
 // 创建axios实例
 const service = axios.create({
-  baseURL: '/api', // api的base_url
+/*  baseURL: '/', // 打包到springboot*/
+  baseURL:'/api',//前后分离时
   timeout: 30000,  // 请求超时时间,
   headers:{
     "Content-Type":

@@ -156,7 +156,7 @@
                 }
                 this.$store.commit('setToken',true);
                 this.dialogFormVisible = false;
-                this.userImgURl="http://localhost:88/upload/"+res.data.userImg;
+                this.userImgURl="http://localhost:8088/upload/"+res.data.userImg;
                 res.data.userImg=this.userImgURl;
                 this.$store.commit('setUser',res.data);
                 console.log(this.userImgURl)

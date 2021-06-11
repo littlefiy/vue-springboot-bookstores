@@ -9,6 +9,7 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
+    //前后端分离，解决跨域问题
     proxyTable: {
       '/api': {
         target: 'http://localhost:8088/',  //填写真实的后台接口
@@ -19,10 +20,11 @@ module.exports = {
         }
       }
     },
-
+//跨域配置结束
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
-    port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+   /* port: 8088, // 打包到springboot*/
+    port:8080,//前后端分离
     autoOpenBrowser: false,
     errorOverlay: true,
     notifyOnErrors: true,
