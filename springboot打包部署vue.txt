@@ -1,0 +1,7 @@
+vue配置：
+1、config/index.js  注释跨域配置，将端口号改为后端端口
+2、src/axios/request.js 将基础路径改为根路劲“/”
+3、npm run build 将生成的dist复制到springboot的resources下
+
+ springboot配置：
+1、打开config/GoWebMvcConfigurerAdapter添加静态资源访问路径/dist
