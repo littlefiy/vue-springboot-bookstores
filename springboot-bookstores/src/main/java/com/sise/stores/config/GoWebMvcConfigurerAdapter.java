@@ -13,6 +13,6 @@ public class GoWebMvcConfigurerAdapter extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("/**")
                 .addResourceLocations("classpath:static/")
                 /*.addResourceLocations("classpath:dist/")//vue打包到springboot*/
-                .addResourceLocations(" file:///C:/StudyProject/GitPro/vue-springboot-bookstores/springboot-bookstores/src/main/resources/static/");
+                .addResourceLocations("file:///C:/StudyProject/GitPro/vue-springboot-bookstores/springboot-bookstores/src/main/resources/static/");
     }
 }

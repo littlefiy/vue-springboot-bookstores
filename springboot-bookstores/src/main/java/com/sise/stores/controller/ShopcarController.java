@@ -10,25 +10,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 @RequestMapping("/car")
 public class ShopcarController {
     @Autowired
     private ShopcarServiceImpl shopcarService;
 
     @RequestMapping("/addCar")
-    @ResponseBody
     public String addCar(@RequestBody Shopcar shopcar){
         int flag=shopcarService.addCar(shopcar);
         return String.valueOf(flag);
     }
     @RequestMapping("/findCar")
-    @ResponseBody
     public PageBean findCar(@RequestBody CarVO cv){
         return shopcarService.findCarInfoByUserId(cv.getUserId(),cv.getCurrent());
     }
     @RequestMapping("/editCar")
-    @ResponseBody
     public String editCar(@RequestBody Shopcar shopcar){
         System.out.println(shopcar);
         int flag=shopcarService.editCar(shopcar);

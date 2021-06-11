@@ -1,6 +1,8 @@
 package com.sise.stores.mapper;
 import com.sise.stores.domain.Book;
+import com.sise.stores.domain.User;
 import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.mapping.FetchType;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -22,4 +24,11 @@ public interface BookDao {
 
     @Update("update tb_book set storage=storage+(#{storage}) where book_id=#{bookId}")
     int editBookStorage(@Param("storage") int storage,@Param("bookId") int bookId);
+
+    //用户所发布的商品
+    @Select("select * from tb_book WHERE user_id=#{userId}")
+    List<Book> findAllBooksByUserId(int userId);
+
+
+
 }

@@ -17,6 +17,7 @@ public interface OrderDao {
     @Options(useGeneratedKeys=true,keyProperty="orderId")
     int addOrder(Order order);
 
+    //用户所有订单，即已购商品
     @Select("select * from tb_order where user_id=#{userId} ORDER BY create_date DESC")
     @Results({
             @Result(id=true,column="order_id", property="orderId"),
@@ -28,4 +29,7 @@ public interface OrderDao {
                     many=@Many(select="com.sise.stores.mapper.OrderItemDao.findOrderItemById",fetchType=FetchType.EAGER))
     })
     List<Order> findOrderByUserId(int userId);
+
+    //用户已售出商品
+    //select b.user_id as '卖家',o.user_id as '买家' from tb_book b JOIN tb_order_item oi on b.book_id=oi.book_id JOIN tb_order o on o.order_id=oi.order_id where b.user_id=15
 }

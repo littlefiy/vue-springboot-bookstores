@@ -12,14 +12,13 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.util.UUID;
 
-@Controller
+@RestController
 @RequestMapping("/user")
 public class UserController {
 @Autowired
 private UserServiceImpl userService;
 
 @RequestMapping("/login")
-@ResponseBody
 public User login(@RequestBody User user){
     User u=userService.login(user);
     return u;
@@ -27,7 +26,6 @@ public User login(@RequestBody User user){
 
 
 @RequestMapping("/register")
-@ResponseBody
     public String register(@RequestBody User user,HttpServletRequest request){
     System.out.println(user);
   /*  base64图片处理,文件上传*/
@@ -66,7 +64,9 @@ public User login(@RequestBody User user){
         try{
             //使用apache提供的工具类操作流
             //写入文件
-            dirPath =request.getSession().getServletContext().getRealPath("/upload") ;
+            String imgPath = "static/upload";
+            /* dirPath =request.getSession().getServletContext().getRealPath("static/upload") ;*/
+            dirPath=new String("src/main/resources/" + imgPath);
             System.out.println(dirPath);
             File filePath = new File(dirPath);
             // 如果保存文件的地址不存在，就先创建目录

@@ -10,10 +10,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/order")
 public class OrderController {
     @Autowired
@@ -22,20 +23,17 @@ public class OrderController {
     @Autowired
     private ShopcarServiceImpl shopcarService;
     @RequestMapping("/toOrder")
-    @ResponseBody
     public List<Shopcar> createOrder(@RequestBody List<Integer> carIds){
         List<Shopcar> shopcarList=shopcarService.findCarByIds(carIds);
         return shopcarList;
     }
 
     @RequestMapping("/createOrder")
-    @ResponseBody
     public String createOrder(@RequestBody OrderVO ov){
         String code=orderService.addOrder(ov.getCarIds(),ov.getUserId(),ov.getAmount());
         return code;
     }
     @RequestMapping("/findOrderList")
-    @ResponseBody
     public List<Order> findOrderList(@RequestBody int userId){
         return orderService.findOrderByUserId(userId);
     }

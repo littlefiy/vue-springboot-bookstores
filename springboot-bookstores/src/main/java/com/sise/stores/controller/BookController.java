@@ -22,8 +22,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-/*@RestController*/
-@Controller
+@RestController
 @RequestMapping("/book")
 public class BookController {
 
@@ -34,7 +33,6 @@ public class BookController {
     private CommentServiceImpl commentService;
 
     @RequestMapping("/addByUser")
-    @ResponseBody
     public String addBookByUser(@RequestBody Book book, HttpServletRequest request) throws Exception {
 
         String dataPrix = "";
@@ -84,7 +82,7 @@ public class BookController {
                     filePath.mkdirs();
                 }
                 FileUtils.writeByteArrayToFile(new File(dirPath +File.separator + tempFileName), bs);
-                System.out.println(dirPath +File.separator + tempFileName);
+                System.out.println("文件上传位置"+dirPath +File.separator + tempFileName);
                 if(imgurl==null||imgurl==""){
                     imgurl=tempFileName;
                 }else{
@@ -106,7 +104,6 @@ public class BookController {
 
 
     @RequestMapping("/findBookById")
-    @ResponseBody
     public Book findBookById(@RequestBody String bookId){
         int bid=Integer.valueOf(bookId);
         Book book=bookService.findBookById(bid);
@@ -115,7 +112,6 @@ public class BookController {
     }
 
     @RequestMapping("/findBookComments")
-    @ResponseBody
     public List<Comment> findBookComments(@RequestBody String bookId){
         int bid=Integer.valueOf(bookId);
         List<Comment> commentList=commentService.findBookComments(bid);
@@ -123,13 +119,11 @@ public class BookController {
     }
 
     @RequestMapping("/findBookTop10")
-    @ResponseBody
     public List<Book> findBookTop10(){
         return bookService.findTop10Book();
     }
 
     @RequestMapping("/addComment")
-    @ResponseBody
     public String addComment(@RequestBody Comment comment){
         int flag=commentService.addComment(comment);
         return String.valueOf(flag);

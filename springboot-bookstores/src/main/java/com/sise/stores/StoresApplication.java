@@ -14,6 +14,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @SpringBootApplication
 @MapperScan(basePackages = "com.sise.stores.mapper")
 public class StoresApplication extends SpringBootServletInitializer {
+    //打包war包
     @Override
     protected SpringApplicationBuilder
     configure(SpringApplicationBuilder builder){
@@ -21,7 +22,6 @@ public class StoresApplication extends SpringBootServletInitializer {
     }
 
     public static void main(String[] args) {
-
         SpringApplication.run(StoresApplication.class, args);
     }
 
