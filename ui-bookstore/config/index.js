@@ -23,7 +23,7 @@ module.exports = {
 //跨域配置结束
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
-   /* port: 8088, // 打包到springboot*/
+/*    port: 8088, // 打包到springboot*/
     port:8080,//前后端分离
     autoOpenBrowser: false,
     errorOverlay: true,

@@ -27,8 +27,13 @@ public class ShopcarController {
     }
     @RequestMapping("/editCar")
     public String editCar(@RequestBody Shopcar shopcar){
-        System.out.println(shopcar);
         int flag=shopcarService.editCar(shopcar);
+        return String .valueOf(flag);
+    }
+
+    @RequestMapping("/delCar")
+    public String delCar(@RequestBody int carId){
+        int flag=shopcarService.delCar(carId);
         return String .valueOf(flag);
     }
 }

@@ -123,7 +123,7 @@
 <script>
     import pageheader from "../components/pageheader";
     import pagefooter from "../components/pagefooter";
-    import {findcar,toorder,editcar} from "../axios/api";
+    import {findcar, toorder, editcar, delcar} from "../axios/api";
 
     export default {
         name: "shoppingcar",
@@ -221,13 +221,18 @@
           console.log(JSON.stringify(this.multipleSelection))
         },
         toDeletecar(carId) {
+          delcar(carId).then(res=>{
+            if(res.data!=0)
           this.$store.commit('deleteCart', carId);
+        })
         },
         deleteCarList() {
           console.log(this.multipleSelection)
           var carIds = this.multipleSelection;
           carIds.forEach(id => {
-            this.$store.commit('deleteCart', id);
+              delcar(id).then(res=> {
+                this.$store.commit('deleteCart', id);
+              })
           })
 
 
@@ -264,10 +269,10 @@
            })
           })
 
-        },
+        }/*,
         handleDelete(index) {
           this.$store.commit('deleteCart', this.cartList[index].carId);
-        },
+        },*/
          }
 
     }

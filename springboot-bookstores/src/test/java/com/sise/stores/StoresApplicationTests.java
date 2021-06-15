@@ -3,12 +3,14 @@ package com.sise.stores;
 import com.sise.stores.domain.Book;
 import com.sise.stores.domain.Comment;
 import com.sise.stores.domain.Order;
+import com.sise.stores.domain.User;
 import com.sise.stores.mapper.BookDao;
 import com.sise.stores.mapper.CommentDao;
 import com.sise.stores.mapper.OrderDao;
 import com.sise.stores.service.BookService;
 import com.sise.stores.service.impl.BookServiceImpl;
 import com.sise.stores.service.impl.CommentServiceImpl;
+import com.sise.stores.service.impl.UserServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -27,6 +29,9 @@ class StoresApplicationTests {
     private CommentServiceImpl commentService;
     @Autowired
     private BookServiceImpl bookService;
+
+    @Autowired
+    private UserServiceImpl userService;
     @Test
     void contextLoads() {
         Book book=bookDao.findBookById(19);
@@ -85,5 +90,15 @@ class StoresApplicationTests {
     public void getBookRedisTest(){
         Book book=bookService.findBookById(33);
         System.out.println(book);
+    }
+
+    @Test
+    public void loginRedisTest(){
+        User u=new User();
+        u.setAccount("gg");
+        u.setPassword("gg");
+        User user=userService.login(u);
+        System.out.println(user);
+
     }
 }

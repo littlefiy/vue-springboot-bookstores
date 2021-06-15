@@ -68,7 +68,14 @@ export function addcar(data) {
     data: data
   })
 }
-
+//删除购物车
+export function delcar(data) {
+  return request({
+    url: `car/delCar`,
+    method: 'post',
+    data: data
+  })
+}
 
 //显示购物车
 export function findcar(data) {

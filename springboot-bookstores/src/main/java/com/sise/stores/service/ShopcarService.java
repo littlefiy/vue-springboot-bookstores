@@ -11,4 +11,5 @@ public interface ShopcarService {
     PageBean findCarInfoByUserId(int userId, int current);
     List<Shopcar> findCarByIds(@Param("carIds") List<Integer> carIds);
     int editCar(Shopcar shopcar);
+    int delCar(int carId);
 }

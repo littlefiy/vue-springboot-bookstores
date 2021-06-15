@@ -34,7 +34,7 @@
                   <template slot-scope="scope">
                     <el-image
                       style="width: 60px; height: 60px"
-                      :src="'http://localhost:88/upload/'+scope.row.book.imgurl[0]"
+                      :src="'http://localhost:8088/upload/'+scope.row.book.imgurl[0]"
                     >
                     </el-image>
                     <span>{{scope.row.book.iSBN}}</span>

@@ -37,6 +37,9 @@ public interface ShopcarCao {
     @Update("update tb_shopcar set buy_num=#{buyNum} where book_id=#{bookId} and user_id=#{userId}")
     int editCar(Shopcar shopcar);
 
+    @Select("select * from tb_shopcar where car_id=#{carId}")
+    Shopcar findCarById(int carId);
+
 
     @Delete("delete from tb_shopcar where car_id=#{carId}")
     int delCar(int carId);
