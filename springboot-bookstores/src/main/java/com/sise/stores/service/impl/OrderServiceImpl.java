@@ -4,6 +4,7 @@ package com.sise.stores.service.impl;
 import com.sise.stores.domain.*;
 import com.sise.stores.mapper.*;
 import com.sise.stores.service.OrderService;
+import com.sise.stores.service.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,9 @@ public class OrderServiceImpl implements OrderService {
     private OrderItemDao orderItemDao;
     @Autowired
     private BookDao bookDao;
+    @Autowired
+    private RedisService redisService;
+
     @Override
     public String addOrder(List<Integer> carIds,int userId,int amount) {
         //插入ec_order,插入ec_order_item,删除购物车已购商品，减少库存数量，返回订单号。
@@ -53,48 +57,24 @@ public class OrderServiceImpl implements OrderService {
             //4
             bookDao.editBookStorage(-1 * sc.getBuyNum(), sc.getBookId());
         }
+        //订单变更，删除缓存
+        redisService.del("list:shopcarByIds"+carIds.toString());//订单提交后，即清除缓存
+        redisService.del("list:order_"+userId);
         return code;
     }
 
     @Override
     public List<Order> findOrderByUserId(int userId) {
-        return orderDao.findOrderByUserId(userId);
-    }
-     /*   Date now=new Date();
-        String code="op-";
-        code+=new SimpleDateFormat("yyyyMMddHHmmss").format(now);
-        code+="-"+userId;
-        System.out.println(code);
-
-        List<ShopCar> itemList=shopCarDao.findListByIds(items);
-        for(ShopCar sc:itemList){
-            if(sc.getBuyNum()>sc.getStorage()){
-                throw new RuntimeException(sc.getTitle()+"库存不足");
-            }
+        List<Order> orders=null;
+        String key="list:order_"+userId;
+        if(redisService.exists(key)){
+            orders=(List<Order>)redisService.get(key,Order.class);
+        }else{
+            orders=orderDao.findOrderByUserId(userId);
+            redisService.set(key,orders,-1);
         }
-
-        double sum=shopCarService.caclTotal(itemList);
-
-        Order order=new Order();
-        order.setCreateDate(now);
-        order.setSendDate(null);
-        order.setStatus("下单成功");
-        order.setOrderCode(code);
-        order.setUserId(userId);
-        order.setAmount(sum);
-        orderDao.addOrder(order);
-//2
-        for(ShopCar sc:itemList) {
-            OrderItem o = new OrderItem();
-            o.setOrderId(order.getId());
-            o.setArticleId(sc.getArticleId());
-            o.setOrderNum(sc.getBuyNum());
-            orderItemDao.addOrderItem(o);
-
-//3
-            shopCarDao.delGoods(sc.getId());
-//4
-            articleDao.editStorage(-1 * sc.getBuyNum(), sc.getArticleId());*/
-
+        return orders;
+        //return orderDao.findOrderByUserId(userId);
+    }
 
 }

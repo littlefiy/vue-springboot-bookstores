@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.mapping.FetchType;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -29,6 +30,16 @@ public interface BookDao {
     @Select("select * from tb_book WHERE user_id=#{userId}")
     List<Book> findAllBooksByUserId(int userId);
 
-
-
+    //显示发布者已被购买的商品
+    @Select("select * from tb_book WHERE user_id=#{userId}")
+    @Results({
+            @Result(id=true,column="book_id", property="bookId"),
+            @Result(column="iSBN",property="iSBN"),
+            @Result(column="book_name",property="bookName"),
+            @Result(column="author",property="author"),
+            @Result(column="storage",property="storage"),
+            @Result(column="book_id",property="orderItems",
+                    many=@Many(select="com.sise.stores.mapper.OrderItemDao.findOrderByBookId",fetchType=FetchType.EAGER))
+    })
+    List<Book> findSaleBooksByUserId(int userId);
 }

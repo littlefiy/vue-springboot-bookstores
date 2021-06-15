@@ -4,6 +4,7 @@ package com.sise.stores.service.impl;
 import com.sise.stores.domain.*;
 import com.sise.stores.domain.vo.PageBean;
 import com.sise.stores.mapper.*;
+import com.sise.stores.service.RedisService;
 import com.sise.stores.service.ShopcarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,8 +18,12 @@ public class ShopcarServiceImpl implements ShopcarService {
     private ShopcarCao shopcarCao;
     @Autowired
     private BookDao bookDao;
+    @Autowired
+    private RedisService redisService;
+
     @Override
     public int addCar(Shopcar shopcar) {
+        redisService.del("list:shopcar_"+shopcar.getUserId());//购物车更改即清除缓存
         //检查购物车是否存在该商品
         Shopcar sc=shopcarCao.findCarCheckOne(shopcar.getBookId(),shopcar.getUserId());
         if(sc==null){
@@ -53,20 +58,24 @@ public class ShopcarServiceImpl implements ShopcarService {
     @Override
     public PageBean findCarInfoByUserId(int userId, int current) {
         int size=5;
+        int start=(current-1)*size;
+        String key="list:shopcar_"+userId+"_"+current;
+        List<Shopcar> shopcarList=null;
+        if(redisService.exists(key)){
+            shopcarList=(List<Shopcar>) redisService.get(key,Shopcar.class);
+        }else{
+            shopcarList=shopcarCao.findCarInfoByUserId(userId,start,size);
+            redisService.set(key,shopcarList,-1);
+        }
+        //List<Shopcar> shopcarList=shopcarCao.findCarInfoByUserId(userId,start,size);
         PageBean<Shopcar> pageBean = new PageBean<Shopcar>();
         pageBean.setCurrPage(current);
         pageBean.setPageSize(size);
         int count=shopcarCao.countCarByUserId(userId);
         pageBean.setTotalCount(count);
-
-        //总页数
         double tc = count;
         Double num =Math.ceil(tc/size);//向上取整
         pageBean.setTotalPage(num.intValue());
-
-        int start=(current-1)*size;
-        List<Shopcar> shopcarList=shopcarCao.findCarInfoByUserId(userId,start,pageBean.getPageSize());
-
         pageBean.setLists(shopcarList);
 
         return pageBean;
@@ -74,13 +83,20 @@ public class ShopcarServiceImpl implements ShopcarService {
 
     @Override
     public List<Shopcar> findCarByIds(List<Integer> carIds) {
-        return shopcarCao.findCarByIds(carIds);
+        String key="list:shopcarByIds"+carIds.toString();
+        List<Shopcar> shopcarList=null;
+        if(redisService.exists(key)){
+            shopcarList=(List<Shopcar>)redisService.get(key,Shopcar.class);
+        }else{
+            shopcarList=shopcarCao.findCarByIds(carIds);
+            redisService.set(key,shopcarList,-1);
+        }
+        return shopcarList;
     }
 
     @Override
     public int editCar(Shopcar shopcar) {
-
-
+        redisService.del("list:shopcar_"+shopcar.getUserId());//购物车更改即清除缓存
         return shopcarCao.editCar(shopcar);
     }
 }

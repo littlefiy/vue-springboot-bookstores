@@ -14,6 +14,7 @@ public interface OrderItemDao {
             "values(#{orderId},#{bookId},#{buyNum})")
     int addOrderItem(OrderItem orderItem);
 
+    //显示的是订单详情页
     @Select("select * from tb_order_item where order_id=#{orderId}")
     @Results({
             @Result(column="order_id", property="orderId"),
@@ -22,4 +23,8 @@ public interface OrderItemDao {
                     one=@One(select="com.sise.stores.mapper.BookDao.findBookById",fetchType= FetchType.EAGER))
     })
     List<OrderItem> findOrderItemById(int orderId);
+
+
+    @Select("select * from tb_order_item where book_id=#{bookId}")
+    List<OrderItem> findOrderByBookId(int bookId);
 }

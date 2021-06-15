@@ -30,6 +30,20 @@ public interface OrderDao {
     })
     List<Order> findOrderByUserId(int userId);
 
-    //用户已售出商品
+    //用户已售出商品,要知道买家是谁
+    // tb_book-->book_id -->tb_order_item-->order_id  -->tb_order
     //select b.user_id as '卖家',o.user_id as '买家' from tb_book b JOIN tb_order_item oi on b.book_id=oi.book_id JOIN tb_order o on o.order_id=oi.order_id where b.user_id=15
+    //select * from tb_book b JOIN tb_order_item oi on b.book_id=oi.book_id where b.user_id=15
+
+ /*  //要知道买家是谁，，三表查询
+    @Select("select * from tb_book where user_id=#{userId} ORDER BY create_date DESC")
+    @Results({
+            @Result(id=true,column="book_id", property="bookId"),
+            @Result(column="book_name",property="bookName;"),
+            @Result(column="storage",property="storage"),
+            @Result(column="book_id",property="itemList",
+                    many=@Many(select="com.sise.stores.mapper.OrderItemDao.findOrderItemById",fetchType=FetchType.EAGER))
+    })
+    List<Order> findSaleBooksByUserId(int userId);*/
+
 }

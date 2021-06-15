@@ -1,5 +1,6 @@
 package com.sise.stores.domain;
 
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Date;
@@ -26,7 +27,7 @@ public class Book {
 
         //以上为基础数据库字段
         private List imgList;//接收前端传来的图片列表
-
+        private List<OrderItem> orderItems;//显示用户发布的商品中，多少已被购买
         private List<Comment> commentList;//当前图书有多少条评论 一对多
 
     public List<Comment> getCommentList() {
@@ -35,6 +36,14 @@ public class Book {
 
     public void setCommentList(List<Comment> commentList) {
         this.commentList = commentList;
+    }
+
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
     }
 
     public Book() {
@@ -184,7 +193,7 @@ public class Book {
         this.countLook = countLook;
     }
 
-    public Book(int bookId, int code, int userId, String iSBN, String bookName, String author, String imgurl, String publisher, Date publishTime, Double price, Double discount, int storage, Date upDate, Date saleDate, String tips, String status, int countLook, List imgList, List<Comment> commentList) {
+    public Book(int bookId, int code, int userId, String iSBN, String bookName, String author, String imgurl, String publisher, Date publishTime, Double price, Double discount, int storage, Date upDate, Date saleDate, String tips, String status, int countLook, List imgList, List<OrderItem> orderItems, List<Comment> commentList) {
         this.bookId = bookId;
         this.code = code;
         this.userId = userId;
@@ -203,6 +212,7 @@ public class Book {
         this.status = status;
         this.countLook = countLook;
         this.imgList = imgList;
+        this.orderItems = orderItems;
         this.commentList = commentList;
     }
 
@@ -227,6 +237,7 @@ public class Book {
                 ", status='" + status + '\'' +
                 ", countLook=" + countLook +
                 ", imgList=" + imgList +
+                ", orderItems=" + orderItems +
                 ", commentList=" + commentList +
                 '}';
     }
