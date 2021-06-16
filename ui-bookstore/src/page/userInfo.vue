@@ -36,10 +36,10 @@
               style="min-height: 100%;"
               theme="dark"
               :router="true">
-              <el-menu-item index="welcome"><i class="el-icon-menu"></i>个人中心</el-menu-item>
-              <el-menu-item index="shoppingcar"><i class="el-icon-menu"></i>购物车</el-menu-item>
-              <el-menu-item index="myorders"><i class="el-icon-menu"></i>我的订单</el-menu-item>
-              <el-menu-item index="addbook"><i class="el-icon-menu"></i>发布闲置书籍</el-menu-item>
+              <el-menu-item index="welcome"><i class="el-icon-user"></i>个人中心</el-menu-item>
+              <el-menu-item index="shoppingcar"><i class="el-icon-shopping-cart-2"></i>购物车</el-menu-item>
+              <el-menu-item index="myorders"><i class="el-icon-notebook-2"></i>我的订单</el-menu-item>
+              <el-menu-item index="addbook"><i class="el-icon-circle-plus-outline"></i>发布闲置书籍</el-menu-item>
               <el-submenu index="2">
                 <template slot="title"><i class="el-icon-document"></i>我的交易</template>
                 <el-menu-item index="mybooks">已发布书籍</el-menu-item>
@@ -47,16 +47,16 @@
                 <el-menu-item index="buybook">已买到书籍</el-menu-item>
               </el-submenu>
               <el-submenu index="3">
-                <template slot="title"><i class="el-icon-plus"></i>我的消息</template>
+                <template slot="title"><i class="el-icon-chat-square"></i>我的消息</template>
                 <el-menu-item index="message">消息列表</el-menu-item>
               </el-submenu>
               <el-submenu index="4">
-                <template slot="title"><i class="el-icon-star-on"></i>我的地址</template>
+                <template slot="title"><i class="el-icon-location-information"></i>我的地址</template>
                 <el-menu-item index="address">所有收货地址</el-menu-item>
                  <el-menu-item index="addaddress">添加收货地址</el-menu-item>
               </el-submenu>
               <el-submenu index="5">
-                <template slot="title"><i class="el-icon-edit"></i>设置</template>
+                <template slot="title"><i class="el-icon-setting"></i>设置</template>
                  <el-menu-item index="updateinfo">修改个人信息</el-menu-item>
                 <el-menu-item index="about">关于我们</el-menu-item>
               </el-submenu>

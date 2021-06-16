@@ -235,4 +235,11 @@
     width: 1000px;
     margin: 0 auto;
   }
+  .form-btn>>>.el-button--primary{
+    background-color: #E0B41B;
+    border: 1px solid #E0B41B;
+    margin-left: 60px;
+    width: 120px;
+
+  }
 </style>

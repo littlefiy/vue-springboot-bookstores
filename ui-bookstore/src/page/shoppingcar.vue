@@ -90,7 +90,7 @@
               </template>
             </el-table-column>
           </el-table>
-          <div style="margin-top: 20px">
+          <div class="page-div">
             <el-button @click="deleteCarList" style="display: block"><i class="el-icon-delete"></i></el-button>
             <el-pagination
               @size-change="handleSizeChange"

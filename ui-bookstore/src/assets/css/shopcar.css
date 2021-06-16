@@ -147,3 +147,10 @@ div.cart-info {
   color: #f2352e;
   font-size: 20px;
 }
+.page-div{
+  margin-top: 20px
+}
+.page-div>>>.el-pagination.is-background .el-pager li:not(.disabled).active{
+  background-color: #E0B41B;
+  color: white;
+}

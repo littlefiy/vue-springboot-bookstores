@@ -38,6 +38,17 @@ export default {
   margin: 0;
   padding: 0;
 }
-
+.el-input__inner:focus,.el-textarea__inner:focus{
+  border-color:#E0B41B
+}
+.el-dropdown-menu__item:focus,.el-dropdown-menu__item:not(.is-disabled):hover{
+  background: rgba(227,227,225,0.6) !important;
+  color: #E0B41B !important;
+}
+.el-button:hover{
+  background-color: rgba(224,180,24,0.5);
+  color: black;
+  border: 1px solid #E0B41B;
+}
 
 </style>

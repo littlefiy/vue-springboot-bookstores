@@ -77,7 +77,6 @@ public class ShopcarServiceImpl implements ShopcarService {
         Double num =Math.ceil(tc/size);//向上取整
         pageBean.setTotalPage(num.intValue());
         pageBean.setLists(shopcarList);
-
         return pageBean;
     }
 

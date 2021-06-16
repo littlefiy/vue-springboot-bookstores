@@ -8,14 +8,25 @@
   width: 320px;
 }
 .reg-form{
-  border: 2px solid #666752;
-  background-color: #EAEFF0;
+  background-color: rgba(224,225,225,0.7);
   border-radius: 10px;
-  padding-top: 20px;
   width: 520px;
   margin: 0 auto;
-  margin-top: 30px;
+  margin-top: 20px;
+  padding: 5px;
+
 }
+.reg-body{
+  width: 100%;
+  background: url("../../assets/img/registerBg.jpeg") no-repeat;
+  background-size: 100%;
+  opacity: 0.8;
+  background-position: center;
+  height: 700px;
+  padding: 0;
+  margin: 0;
+}
+
 .search{
   width: 1226px;
   margin: 0 auto;

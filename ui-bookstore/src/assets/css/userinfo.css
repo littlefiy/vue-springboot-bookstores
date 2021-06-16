@@ -23,3 +23,14 @@
   margin-left:450px;
   margin-top: 2px;
 }
+.el-menu-item.is-active{
+  background-color: white;
+   color: #E0B41B;
+  font-size: 14pt;
+}
+.el-menu-item:hover{
+  background-color: rgba(138,134,160,0.1);
+
+}
+
+

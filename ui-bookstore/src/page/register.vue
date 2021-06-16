@@ -27,7 +27,7 @@
           </div>
 
 
-        <el-main style="width: 100%">
+        <el-main class="reg-body" >
           <div class="reg-form">
       <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
         <el-form-item label="头像" class="userImg">

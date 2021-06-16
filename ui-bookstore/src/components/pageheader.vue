@@ -19,16 +19,16 @@
                     <el-dropdown-item icon="el-icon-user">
                       <span @click="touserinfo">个人中心</span>
                     </el-dropdown-item>
-                    <el-dropdown-item icon="el-icon-user">
+                    <el-dropdown-item icon="el-icon-circle-plus-outline">
                       <span @click="toaddbook">发布闲置书籍</span>
                     </el-dropdown-item>
-                    <el-dropdown-item icon="el-icon-user">
+                    <el-dropdown-item icon="el-icon-shopping-cart-2">
                       <span @click="toshoppingcar">购物车</span>
                     </el-dropdown-item>
-                    <el-dropdown-item icon="el-icon-circle-close">
+                    <el-dropdown-item icon="el-icon-notebook-2">
                       <span @click="toorderlist">我的订单</span>
                     </el-dropdown-item>
-                    <el-dropdown-item icon="el-icon-circle-close">
+                    <el-dropdown-item icon="el-icon-switch-button">
                       <span @click="logout">退出登录</span>
                     </el-dropdown-item>
                   </el-dropdown-menu>
