@@ -169,7 +169,10 @@
   /deep/ .el-select .el-input__inner:focus{
     border-color: #666752;
   }
-  /deep/ .el-select-dropdown__item.selected  /deep/ .el-button--text{
+  /deep/ .el-select-dropdown__item.selected{
     color: #E0B41B;
   }
+/deep/ .el-button--text{
+  color:#666752;
+}
 </style>

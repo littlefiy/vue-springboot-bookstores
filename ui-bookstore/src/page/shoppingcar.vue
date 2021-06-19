@@ -63,7 +63,7 @@
             <el-table-column
               label="单价"
               width="120">
-              <template slot-scope="scope">{{scope.row.book.price*scope.row.book.discount}}</template>
+              <template slot-scope="scope">{{scope.row.book.price*scope.row.book.discount*0.01|formatNumber}}</template>
             </el-table-column>
             <el-table-column
               label="数量"
@@ -80,7 +80,7 @@
             <el-table-column
               label="小计"
               show-overflow-tooltip>
-              <template slot-scope="scope">{{scope.row.book.price*scope.row.book.discount*scope.row.buyNum }}</template>
+              <template slot-scope="scope">{{scope.row.book.price*scope.row.book.discount*scope.row.buyNum *0.01|formatNumber}}</template>
             </el-table-column>
             <el-table-column
               label="管理"
@@ -108,7 +108,7 @@
               共计 <span>{{ this.multipleSelection.length }}</span> 件商品
             </div>
             <div class="cart-footer-desc">
-              应付总额 <span>¥ {{this.costAll}}</span>
+              应付总额 <span>¥ {{this.costAll*0.01 |formatNumber}}</span>
             </div>
           <div style="margin-top: 20px">
             <el-button class="buy-btn" @click="carSubmit">确定购买</el-button>

@@ -219,12 +219,10 @@
         submitForm(formname){
           this.newTransformBase64(this.filelist, (results) => {
             this.bookForm.imgList=results;
-            var bookparam=this.bookForm;
             this.bookForm.userId=this.$store.state.user.userId;//添加该书本的用户
-            console.log(this.$store.state.user.userId);
+            console.log("当前用户id"+this.$store.state.user.userId);
             this.bookForm.code='10001';//图书类型id
-            var bookparam=this.bookForm;
-            addbook(bookparam).then(res=>{
+            addbook(this.bookForm).then(res=>{
               if(res.data!=0){
                 console.log(res.data)
                 this.$message({

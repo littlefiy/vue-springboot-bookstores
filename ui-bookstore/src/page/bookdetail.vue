@@ -61,7 +61,7 @@
               <div class="book-price-ul">
                 <ul>
                   <li>
-                    售价：<span style="font-size: 18px;color: red">￥{{book.price*book.discount*0.01}}</span>
+                    售价：<span style="font-size: 18px;color: red">￥{{newprice}}</span>
                   </li>
                   <li>
                     原价：<span style="font-size: 15px;opacity: 0.9">{{book.price}}</span>
@@ -185,6 +185,14 @@
             bookId:'',
           }
       },
+  computed:{
+    newprice:function () {
+      let val=this.book.price*this.book.discount*0.01
+      let price=Number(val).toFixed(3)
+      let realVal = price.substring(0, price.length - 1)
+      return  Number(realVal);
+    }
+  },
       components: {
         pageheader,
         pagefooter

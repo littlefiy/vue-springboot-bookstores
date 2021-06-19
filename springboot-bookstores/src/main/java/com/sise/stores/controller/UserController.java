@@ -21,6 +21,7 @@ private UserServiceImpl userService;
 @RequestMapping("/login")
 public User login(@RequestBody User user){
     User u=userService.login(user);
+    System.out.println("登录信息"+u);
     return u;
 }
 

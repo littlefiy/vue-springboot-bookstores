@@ -23,7 +23,7 @@
                      作者：<span style="opacity: 0.6">{{book.author}}</span>
                     </li>
                     <li>
-                      价格：<span style="color: #ff6662">￥{{book.price*book.discount}}</span>
+                      价格：<span style="color: #ff6662">￥{{book.price*book.discount*0.01|formatNumber}}</span>
                     </li>
                   </ul>
                 </li>
@@ -87,7 +87,7 @@
   }
   .one{
     width:230px;
-    height:320px;
+    height:340px;
     float: left;
     margin: 1px;
     border: 1px solid #E3E3E1;
