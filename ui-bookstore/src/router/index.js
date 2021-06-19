@@ -37,6 +37,11 @@ export default new Router({
       name: 'userorder',
       component: resolve => require(['@/page/userorder'],resolve)
     },
+    {
+      path: '/updatebook',
+      name: 'updatebook',
+      component: resolve => require(['@/components/user/book/updateBook'],resolve)
+    },
     //个人中心导航栏
     {
       // 我的交易--懒加载

@@ -61,7 +61,7 @@
               <div class="book-price-ul">
                 <ul>
                   <li>
-                    售价：<span style="font-size: 18px;color: red">￥{{book.price*book.discount}}</span>
+                    售价：<span style="font-size: 18px;color: red">￥{{book.price*book.discount*0.01}}</span>
                   </li>
                   <li>
                     原价：<span style="font-size: 15px;opacity: 0.9">{{book.price}}</span>
@@ -75,11 +75,16 @@
                   <li>上新时间：<span>{{book.upDate | formatTime}}</span></li>
                   <li>库存：<span>{{book.storage}}</span></li>
                 </ul>
-                购买数量：  <el-input-number v-model="car.buyNum" @change="handleChange" :min="1" :max="book.storage" ></el-input-number>
+                购买数量：  <el-input-number v-model="car.buyNum" size="small" @change="handleChange" :min="1" :max="book.storage" ></el-input-number>
               </div>
-              <div class="book-buy-btn">
+
+              <div class="book-buy-btn" v-if="book.userId!=this.$store.state.user.userId">
                 <el-button :autofocus="true">立即购买</el-button>
                 <el-button :autofocus="true" @click="addcar"><i class="el-icon-shopping-cart-2"></i>加入购物车</el-button>
+              </div>
+              <div class="book-buy-btn" v-else>
+                <span>我发布的闲置：</span>
+                <el-button :autofocus="true" @click="toupdate(book.bookId)"><i class="el-icon-edit"></i>修改书籍信息</el-button>
               </div>
             </el-main>
           </el-container>
@@ -262,6 +267,14 @@
             this.commentlist=res.data;
             console.log(res);
           })
+        },
+        toupdate(bookId){
+          this.$router.push({
+            name:"updatebook",
+            params:{
+              bookId:bookId
+            }
+          });
         }
 
       }

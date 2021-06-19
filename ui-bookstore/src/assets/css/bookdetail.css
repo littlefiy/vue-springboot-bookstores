@@ -16,8 +16,9 @@
   border:1px solid #E0B41B;
   background-color: #f2f3ee;
   width: 180px;
-  height: 45px;
-  margin: 0px 10px;
+  height: 38px;
+  margin: 0px 8px;
+  margin-top: 10px;
 }
 .el-button--default:hover{
   background-color: white;

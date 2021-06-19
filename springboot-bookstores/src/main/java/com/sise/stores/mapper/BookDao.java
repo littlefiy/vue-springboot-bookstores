@@ -42,4 +42,11 @@ public interface BookDao {
                     many=@Many(select="com.sise.stores.mapper.OrderItemDao.findOrderByBookId",fetchType=FetchType.EAGER))
     })
     List<Book> findSaleBooksByUserId(int userId);
+
+    @Update("update tb_book set iSBN=#{iSBN}, book_name=#{bookName},author=#{author},imgurl=#{imgurl},publisher=#{publisher}" +
+            ",publish_time=#{publishTime},price=#{price},discount=#{discount},storage=#{storage},tips=#{tips} where book_id=#{bookId}")
+    int updateBook(Book book);
+
+    @Delete("delete from tb_book where book_id=#{bookId}")
+    int delBook(int bookId);
 }

@@ -1,10 +1,18 @@
 <template>
     <div>
-      <el-main >
-        <div>
+<!--      <el-main>-->
+<!--        <span>待支付订单</span>-->
+<!--       <div v-if="this.unpaylist!=null">-->
+<!--&lt;!&ndash;        书名： {{this.unpaylist[0].orderCode}}&ndash;&gt;-->
+<!--       </div>-->
+<!--        <h4>倒计时00:30:00</h4>-->
+<!--      </el-main>-->
+      <el-main>
+
+        <div v-if="this.orderlist!=null">
           <el-table
             :data="this.orderlist"
-            style="width: 100%">
+            style="width: 900px;margin-left: 30px">
             <el-table-column type="expand">
               <template slot-scope="props">
                 <el-table
@@ -46,6 +54,9 @@
             </el-table-column>
           </el-table>
         </div>
+        <div v-else>
+          <span>目前没有订单哦~</span>
+        </div>
       </el-main>
 
 
@@ -53,22 +64,27 @@
 </template>
 
 <script>
-    import {findorderlist} from "../../axios/api";
+  import {findorderlist, findunpayorder} from "../../axios/api";
     export default {
         name: "myorders",
       data(){
         return{
-          orderlist:[]
+          orderlist:[],
+          unpaylist:[]
         }
       },
       mounted() {
-        //显示全部订单
+        //显示完成订单
         var params=this.$store.state.user.userId;
         findorderlist(params).then(res=>{
           console.log(res.data)
           this.orderlist=res.data
         })
-
+        //未支付订单
+      findunpayorder(params).then(res=>{
+        console.log(res.data);
+        this.unpaylist=res.data;
+      })
       }
     }
 </script>

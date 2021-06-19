@@ -69,7 +69,7 @@
               label="数量"
               show-overflow-tooltip>
               <template slot-scope="scope" class="input-number">
-                <el-input-number v-model="scope.row.buyNum"  @change="handleCount($event,scope.$index)" :min="1" :max="scope.row.book.storage" label=""></el-input-number>
+                <el-input-number v-model="scope.row.buyNum"  size="small" @change="handleCount($event,scope.$index)" :min="1" :max="scope.row.book.storage" label=""></el-input-number>
              <!--   <span v-show="$route.params.fullStorage" style="size: 4pt;color: red">库存紧张</span>-->
                 <span v-if="scope.row.bookId==$route.params.fullStorage" style="size: 4px;color: red">
                   库存紧张

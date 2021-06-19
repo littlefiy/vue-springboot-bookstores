@@ -10,10 +10,14 @@ import store from './store/index'
 import Moment from 'moment'
 // 定义全局时间戳过滤器
 Vue.filter('formatDate', function(value) {
-  return Moment(value).format('YYYY-MM-DD')
+  return Moment(value).format('YYYY-MM')
 })
 Vue.filter('formatTime', function(value) {
   return Moment(value).format('YYYY-MM-DD HH:mm:ss')
+})
+//格式化金额
+Vue.filter("formatNumber", function(data) {
+  return data.toFixed(2)
 })
 Vue.prototype.$moment = Moment;
 Vue.config.productionTip = false

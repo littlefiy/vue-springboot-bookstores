@@ -29,9 +29,15 @@ public class RedisConfig {
         om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
         om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
         jacksonSeial.setObjectMapper(om);
+        // 值采用json序列化
+        template.setValueSerializer(jacksonSeial);
+        //使用StringRedisSerializer来序列化和反序列化redis的key值
+        template.setKeySerializer(new StringRedisSerializer());
 
-        // 设置RedisTemplate模板API的序列化方式为JSON
-        template.setDefaultSerializer(jacksonSeial);
+        // 设置hash key 和value序列化模式
+        template.setHashKeySerializer(new StringRedisSerializer());
+        template.setHashValueSerializer(jacksonSeial);
+        template.afterPropertiesSet();
         return template;
     }
 

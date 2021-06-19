@@ -58,8 +58,9 @@ public class OrderServiceImpl implements OrderService {
             bookDao.editBookStorage(-1 * sc.getBuyNum(), sc.getBookId());
         }
         //订单变更，删除缓存
-        redisService.del("list:shopcarByIds"+carIds.toString());//订单提交后，即清除缓存
+        redisService.del("list:order_unpay_"+userId);//订单提交后，即清除缓存
         redisService.del("list:order_"+userId);
+        redisService.del("list:shopcar_"+userId);
         return code;
     }
 
@@ -76,5 +77,17 @@ public class OrderServiceImpl implements OrderService {
         return orders;
         //return orderDao.findOrderByUserId(userId);
     }
+
+    //取出缓存中未提交的订单
+//    @Override
+//    public Order findUnPayOrder(int userId) {
+//        Order orders=null;
+//        String key="list:order_unpay_"+userId;
+//        if(redisService.exists(key)){
+//            System.out.println("存在");
+//            orders=(Order)redisService.getBean(key);
+//        }
+//        return orders;
+//    }
 
 }

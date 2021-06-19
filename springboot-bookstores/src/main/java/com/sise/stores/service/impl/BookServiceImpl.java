@@ -27,8 +27,27 @@ public class BookServiceImpl implements BookService {
         int bookId=book.getBookId();//获得自增ID
         //删除前十缓存
         redisService.del("list:book_top10");
+        redisService.del("list:user_books"+book.getUserId());
         return bookId;
     }
+
+    @Override
+    public int updateBook(Book book) {
+        int flag=bookDao.updateBook(book);
+        redisService.del("list:book_top10");
+        redisService.del("list:user_books"+book.getUserId());
+        redisService.del("book:book_"+book.getBookId());
+        return book.getBookId();
+    }
+
+    @Override
+    public int delBook(Book book) {
+        int flag=bookDao.delBook(book.getBookId());
+        redisService.del("list:book_top10");
+        redisService.del("list:user_books"+book.getUserId());
+        return flag;
+    }
+
 
     @Override
     public Book findBookById(int bookId) {
@@ -52,6 +71,19 @@ public class BookServiceImpl implements BookService {
             books=(List<Book>)redisService.get(key,Book.class);
         }else{
             books=bookDao.findTop10Book();
+            redisService.set(key,books,-1);
+        }
+        return books;
+    }
+
+    @Override
+    public List<Book> findBooksByUser(int userId) {
+        List<Book> books=null;
+        String key="list:user_books"+userId;
+        if(redisService.exists(key)){
+            books=(List<Book>)redisService.get(key,Book.class);
+        }else{
+            books=bookDao.findAllBooksByUserId(userId);
             redisService.set(key,books,-1);
         }
         return books;

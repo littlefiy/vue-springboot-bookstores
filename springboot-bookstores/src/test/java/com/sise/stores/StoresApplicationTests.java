@@ -8,9 +8,7 @@ import com.sise.stores.mapper.BookDao;
 import com.sise.stores.mapper.CommentDao;
 import com.sise.stores.mapper.OrderDao;
 import com.sise.stores.service.BookService;
-import com.sise.stores.service.impl.BookServiceImpl;
-import com.sise.stores.service.impl.CommentServiceImpl;
-import com.sise.stores.service.impl.UserServiceImpl;
+import com.sise.stores.service.impl.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -29,9 +27,13 @@ class StoresApplicationTests {
     private CommentServiceImpl commentService;
     @Autowired
     private BookServiceImpl bookService;
-
+    @Autowired
+    private ShopcarServiceImpl shopcarService;
     @Autowired
     private UserServiceImpl userService;
+
+    @Autowired
+    private OrderServiceImpl orderService;
     @Test
     void contextLoads() {
         Book book=bookDao.findBookById(19);
@@ -41,7 +43,7 @@ class StoresApplicationTests {
     //显示用户在售的商品
     @Test
     void findAllSaledBooksByUserId(){
-        List<Book> list=bookDao.findAllBooksByUserId(15);
+        List<Book> list=bookDao.findAllBooksByUserId(26);
         for (Book b: list
         ) {
             System.out.println(b);
@@ -101,4 +103,11 @@ class StoresApplicationTests {
         System.out.println(user);
 
     }
+
+//    @Test
+//    public void orderRedisTest(){
+//        Order order=orderService.findUnPayOrder(14);
+//        System.out.println(order);
+//    }
+
 }

@@ -50,7 +50,30 @@ export function findbooktop10(data) {
     data: data
   })
 }
-
+//根据userId查找用户发布的商品
+export function findbooksbyuser(data) {
+  return request({
+    url: `book/findBooksByUser`,
+    method: 'post',
+    data: data
+  })
+}
+//修改商品信息
+export function updatebook(data) {
+  return request({
+    url: `book/updateBook`,
+    method: 'post',
+    data: data
+  })
+}
+//修改商品信息
+export function delbook(data) {
+  return request({
+    url: `book/delBook`,
+    method: 'post',
+    data: data
+  })
+}
 //添加图书留言
 export function addcomment(data) {
   return request({
@@ -117,6 +140,14 @@ export function addorder(data) {
 export function findorderlist(data) {
   return request({
     url: `order/findOrderList`,
+    method: 'post',
+    data: data
+  })
+}
+//显示用户未支付订单
+export function findunpayorder(data) {
+  return request({
+    url: `order/findUnPayOrder`,
     method: 'post',
     data: data
   })

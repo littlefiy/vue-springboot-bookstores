@@ -59,6 +59,7 @@ public class ShopcarServiceImpl implements ShopcarService {
     public PageBean findCarInfoByUserId(int userId, int current) {
         int size=5;
         int start=(current-1)*size;
+        //String key="list:shopcar_"+userId+"_"+current;
         String key="list:shopcar_"+userId;
         List<Shopcar> shopcarList=null;
         if(redisService.exists(key)){
@@ -82,14 +83,12 @@ public class ShopcarServiceImpl implements ShopcarService {
 
     @Override
     public List<Shopcar> findCarByIds(List<Integer> carIds) {
-        String key="list:shopcarByIds"+carIds.toString();
-        List<Shopcar> shopcarList=null;
-        if(redisService.exists(key)){
-            shopcarList=(List<Shopcar>)redisService.get(key,Shopcar.class);
-        }else{
+            String key="list:order_unpay_";
+            List<Shopcar> shopcarList=null;
             shopcarList=shopcarCao.findCarByIds(carIds);
-            redisService.set(key,shopcarList,-1);
-        }
+            Shopcar s=shopcarList.get(0);
+            redisService.set(key+s.getUserId(),shopcarList,-1);
+            //test
         return shopcarList;
     }
 
@@ -101,8 +100,8 @@ public class ShopcarServiceImpl implements ShopcarService {
 
     @Override
     public int delCar(int carId) {
-        Shopcar shopcar=shopcarCao.findCarById(carId);
-        redisService.del("list:shopcar_"+shopcar.getUserId());//购物车更改即清除缓存
+            Shopcar shopcar=shopcarCao.findCarById(carId);
+        redisService.del("list:shopcar_"+shopcar.getUserId());
         return shopcarCao.delCar(carId);
     }
 }

@@ -1,5 +1,7 @@
 package com.sise.stores.domain;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.Arrays;
@@ -15,6 +17,7 @@ public class Book {
         private String author;
         private String imgurl;
         private String publisher;
+        @DateTimeFormat(pattern = "yyyy-MM")
         private Date publishTime;
         private Double price;
         private Double discount;
