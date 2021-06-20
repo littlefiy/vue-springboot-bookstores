@@ -37,6 +37,13 @@
                       :src="'http://localhost:8088/upload/'+scope.row.book.imgurl[0]"
                     >
                     </el-image>
+
+                  </template>
+                </el-table-column>
+                <el-table-column
+                  label="ISBN"
+                  show-overflow-tooltip>
+                  <template slot-scope="scope">
                     <span>{{scope.row.book.iSBN}}</span>
                   </template>
                 </el-table-column>
@@ -57,7 +64,7 @@
                 <el-table-column
                   label="单价"
                   width="120">
-                  <template slot-scope="scope">{{scope.row.book.price*scope.row.book.discount}}</template>
+                  <template slot-scope="scope">{{scope.row.book.price*scope.row.book.discount*0.01|formatNumber}}</template>
                 </el-table-column>
                 <el-table-column
                   label="数量"
@@ -69,7 +76,7 @@
                 <el-table-column
                   label="小计"
                   show-overflow-tooltip>
-                  <template slot-scope="scope">{{scope.row.book.price*scope.row.book.discount*scope.row.buyNum }}</template>
+                  <template slot-scope="scope">{{scope.row.book.price*scope.row.book.discount*scope.row.buyNum*0.01|formatNumber}}</template>
                 </el-table-column>
               </el-table>
 
@@ -78,7 +85,7 @@
                   共计 <span>{{countAll}}</span> 件商品
                 </div>
                 <div class="cart-footer-desc">
-                  应付总额 <span>¥ {{costAll}}</span>
+                  应付总额 <span>¥ {{costAll|formatNumber}}</span>
                 </div>
                 <div style="margin-top: 20px">
                   <el-button class="buy-btn" @click="submitOrder">提价订单</el-button>
@@ -123,7 +130,7 @@
         costAll(){
            var cost=0;
           this.orderitem.forEach(data=>{
-            cost+=  data.book.price*data.book.discount*data.buyNum
+            cost+=  data.book.price*data.book.discount*data.buyNum*0.01
           })
           return cost;
         },

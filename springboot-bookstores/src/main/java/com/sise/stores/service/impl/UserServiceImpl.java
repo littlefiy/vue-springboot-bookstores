@@ -18,7 +18,8 @@ public class UserServiceImpl implements UserService {
     private RedisService redisService;
     @Override
     public int addUser(User user) {
-        redisService.setBean("user:user_"+user.getAccount(),user);
+        redisService.del("user:user_"+user.getAccount());
+
         //设置权限等
         user.setCreateDate(new Date());
         user.setRole(0);

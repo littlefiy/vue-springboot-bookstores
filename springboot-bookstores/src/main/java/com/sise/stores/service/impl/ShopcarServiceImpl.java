@@ -23,7 +23,7 @@ public class ShopcarServiceImpl implements ShopcarService {
 
     @Override
     public int addCar(Shopcar shopcar) {
-        redisService.del("list:shopcar_"+shopcar.getUserId());//购物车更改即清除缓存
+        //redisService.del("list:shopcar_"+shopcar.getUserId()+"*");//购物车更改即清除缓存
         //检查购物车是否存在该商品
         Shopcar sc=shopcarCao.findCarCheckOne(shopcar.getBookId(),shopcar.getUserId());
         if(sc==null){
@@ -60,15 +60,15 @@ public class ShopcarServiceImpl implements ShopcarService {
         int size=5;
         int start=(current-1)*size;
         //String key="list:shopcar_"+userId+"_"+current;
-        String key="list:shopcar_"+userId;
-        List<Shopcar> shopcarList=null;
-        if(redisService.exists(key)){
-            shopcarList=(List<Shopcar>) redisService.get(key,Shopcar.class);
-        }else{
-            shopcarList=shopcarCao.findCarInfoByUserId(userId,start,size);
-            redisService.set(key,shopcarList,-1);
-        }
-        //List<Shopcar> shopcarList=shopcarCao.findCarInfoByUserId(userId,start,size);
+//        String key="list:shopcar_"+userId+;
+//        List<Shopcar> shopcarList=null;
+//        if(redisService.exists(key)){
+//            shopcarList=(List<Shopcar>) redisService.get(key,Shopcar.class);
+//        }else{
+//            shopcarList=shopcarCao.findCarInfoByUserId(userId,start,size);
+//            redisService.set(key,shopcarList,-1);
+//        }
+        List<Shopcar> shopcarList=shopcarCao.findCarInfoByUserId(userId,start,size);
         PageBean<Shopcar> pageBean = new PageBean<Shopcar>();
         pageBean.setCurrPage(current);
         pageBean.setPageSize(size);
@@ -94,14 +94,14 @@ public class ShopcarServiceImpl implements ShopcarService {
 
     @Override
     public int editCar(Shopcar shopcar) {
-        redisService.del("list:shopcar_"+shopcar.getUserId());//购物车更改即清除缓存
+        //redisService.del("list:shopcar_"+shopcar.getUserId());//购物车更改即清除缓存
         return shopcarCao.editCar(shopcar);
     }
 
     @Override
     public int delCar(int carId) {
-            Shopcar shopcar=shopcarCao.findCarById(carId);
-        redisService.del("list:shopcar_"+shopcar.getUserId());
+        //Shopcar shopcar=shopcarCao.findCarById(carId);
+        //redisService.del("list:shopcar_"+shopcar.getUserId());
         return shopcarCao.delCar(carId);
     }
 }

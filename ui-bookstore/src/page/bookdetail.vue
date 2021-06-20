@@ -118,7 +118,8 @@
                         <el-form-item label="">
                           <el-input v-model="addcomment.content"
                                     type="textarea"
-                                    :rows="2"
+                                    show-word-limit
+                                    maxlength="20"
                                     placeholder="看对眼就留言，问问细节吧"
                           style="width: 600px"></el-input>
                         </el-form-item>
@@ -177,7 +178,7 @@
               buyNum:""
             },
             book:"",
-            commentlist:"",
+            commentlist:[],
             activeName: 'first',
             addcomment: {
               content:""
@@ -253,6 +254,7 @@
         subComment(){
           this.addcomment.bookId=this.bookId;
           this.addcomment.userId=this.$store.state.user.userId;
+          console.log("当前评论userId:"+this.$store.state.user.userId)
           this.addcomment.commentDate=new Date();
           addcomment(this.addcomment).then(res=>{
             if(res!=0){

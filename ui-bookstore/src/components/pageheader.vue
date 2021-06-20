@@ -160,7 +160,7 @@
                 res.data.userImg=this.userImgURl;
                 this.$store.commit('setUser',res.data);
                 console.log(this.userImgURl)
-                console.log(res.data)
+                console.log("登录信息"+JSON.stringify(res.data))
                 this.$message({
                   type: 'success',
                   message: '欢迎您：'+this.$store.state.user.userName,

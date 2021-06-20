@@ -1,6 +1,6 @@
 <template>
     <div>
-      <el-form :model="bookForm" status-icon  ref="bookForm" label-width="80px" class="book-form">
+      <el-form :inline="true" :model="bookForm" status-icon  ref="bookForm" label-width="80px" class="book-form">
         <el-form-item  label="ISBN" class="">
           <el-input v-model="bookForm.iSBN"></el-input>
         </el-form-item>
@@ -40,6 +40,7 @@
         <el-form-item label="现价">
           <el-input v-model="newprice" readonly></el-input>
         </el-form-item>
+       <div style="width: 280px;height: 10px"></div>
         <el-form-item label="书本描述">
           <el-input
             type="textarea"
@@ -50,6 +51,7 @@
             v-model="bookForm.tips"
             style="width: 400px"></el-input>
         </el-form-item>
+        <div style="width: 280px;height: 10px"></div>
         <el-form-item label="添加书本图片" class="upload-item">
           <el-upload
             action=""
@@ -92,7 +94,7 @@
             <img width="100%" :src="dialogImageUrl" alt="">
           </el-dialog>
         </el-form-item>
-
+        <div style="width: 280px;height: 10px"></div>
         <el-form-item class="form-btn">
           <el-button type="primary" @click="resetForm('bookForm')">取 消</el-button>
           <el-button type="primary" @click="submitForm('bookForm')">发 布</el-button>

@@ -31,7 +31,7 @@ public class CommentServiceImpl implements CommentService {
             return comments;
         }else{
             comments=commentDao.findBookComments(bookId);
-            redisService.set("list:comment_"+bookId,comments,-1);
+            redisService.set(key,comments,-1);
         }
         return comments;
        // return commentDao.findBookComments(bookId);
@@ -39,8 +39,9 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public int addComment(Comment comment) {
-        int flag= commentDao.addComment(comment);
         redisService.del("list:comment_"+comment.getBookId());
+        redisService.del("book:book_"+comment.getBookId());
+        int flag= commentDao.addComment(comment);
         return flag;
     }
 }

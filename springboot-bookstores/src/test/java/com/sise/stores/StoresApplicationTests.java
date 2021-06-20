@@ -97,8 +97,8 @@ class StoresApplicationTests {
     @Test
     public void loginRedisTest(){
         User u=new User();
-        u.setAccount("gg");
-        u.setPassword("gg");
+        u.setAccount("123");
+        u.setPassword("123");
         User user=userService.login(u);
         System.out.println(user);
 
@@ -109,5 +109,6 @@ class StoresApplicationTests {
 //        Order order=orderService.findUnPayOrder(14);
 //        System.out.println(order);
 //    }
+
 
 }
