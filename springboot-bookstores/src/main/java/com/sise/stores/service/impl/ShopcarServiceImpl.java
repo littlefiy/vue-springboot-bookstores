@@ -49,9 +49,6 @@ public class ShopcarServiceImpl implements ShopcarService {
             }else{
                 return 0;
             }
-
-       /*     shopcar.setBuyNum(sc.getBuyNum()+shopcar.getBuyNum());
-            return shopcarCao.editCar(shopcar);*/
         }
     }
 //分页显示

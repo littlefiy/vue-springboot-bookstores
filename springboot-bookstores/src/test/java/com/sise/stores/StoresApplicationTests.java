@@ -104,11 +104,4 @@ class StoresApplicationTests {
 
     }
 
-//    @Test
-//    public void orderRedisTest(){
-//        Order order=orderService.findUnPayOrder(14);
-//        System.out.println(order);
-//    }
-
-
 }

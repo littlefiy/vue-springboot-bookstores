@@ -56,11 +56,13 @@ public class OrderServiceImpl implements OrderService {
             shopcarCao.delCar(sc.getCarId());
             //4
             bookDao.editBookStorage(-1 * sc.getBuyNum(), sc.getBookId());
+            redisService.del("book:book_"+sc.getBookId());
         }
         //订单变更，删除缓存
         redisService.del("list:order_unpay_"+userId);//订单提交后，即清除缓存
         redisService.del("list:order_"+userId);
         redisService.del("list:shopcar_"+userId);
+
         return code;
     }
 
